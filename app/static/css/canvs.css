@@ -70,7 +70,6 @@ figure {
 }
 
 #items {
-	display: block;
 	width: 100000px;
 	height: 100000px;
 	background: url(../images/seamlesspaper3.jpg);
@@ -82,19 +81,16 @@ figure {
   display: inline-block;
 	z-index: 100;
   background: url(../images/math-grid.jpg);
-  background-size: 100% auto;
-  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  background-size: 250px auto;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
   padding: 1rem;
 }
 
 .item.text {
 	color: #000;
-  left: 50000px;
-  top: 50000px;
-  height: auto;
 }
 
 .item.image {
-  border: 10px solid #efefef;
-  border-bottom: 20px solid #efefef;
+  border: 10px solid #f0e7cc;
+  border-bottom: 20px solid #f0e7cc;
 }
