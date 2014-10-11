@@ -49,10 +49,9 @@ $(document).ready(function() {
   initialize();
   */
 
+  $("body").scrollTop(50000);
+  $("body").scrollLeft(50000);
+
   $(".item").draggable({scroll: true});
   $("#items").draggable();
-
-  $("#content").scrollTop(50000);
-  $("#content").scrollLeft(50000);
-
 });

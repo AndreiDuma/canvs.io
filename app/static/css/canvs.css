@@ -68,10 +68,10 @@ figure {
 }
 
 #items {
-  display: block;
-  width: 100000px;
-  height: 100000px;
-  background: #000;
+	display: block;
+	width: 100000px;
+	height: 100000px;
+	background: url(../images/cat.jpg);
 }
 
 .item {
@@ -84,12 +84,12 @@ figure {
 .item.text {
 	background: #c2c2c2;
 	color: #000;
-  left: 50000px;
-  top: 50000px;
+  	left: 50000px;
+  	top: 50000px;
 }
 
 .item.image {
 	background: blue;
-  left: 50500px;
-  top: 50000px;
+  	left: 50500px;
+  	top: 50000px;
 }
