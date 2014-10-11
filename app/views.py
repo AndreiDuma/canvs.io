@@ -13,6 +13,11 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/api/items-mock', methods=['GET'])
+def items_mock():
+    return send_file('sample.json')
+
+
 @app.route('/api/items', methods=['GET'])
 def items():
     content = {"items" : {}}
