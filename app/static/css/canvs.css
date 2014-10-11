@@ -68,10 +68,9 @@ figure {
 }
 
 #items {
-  display: block;
-  width: 100000px;
-  height: 100000px;
-  background: #000;
+	display: block;
+	width: 100000px;
+	height: 100000px;
 }
 
 .item {
@@ -79,17 +78,19 @@ figure {
 	width: 400px;
 	height: 300px;
 	z-index: 100;
+  border-radius: 5px;
+  border: 3px dashed #effa00;
 }
 
 .item.text {
-	background: #c2c2c2;
 	color: #000;
   left: 50000px;
   top: 50000px;
 }
 
 .item.image {
-	background: blue;
   left: 50500px;
   top: 50000px;
+  background: url("../images/cat.jpg");
+  background-repeat: no-repeat;
 }
