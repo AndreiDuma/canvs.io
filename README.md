@@ -1,4 +1,4 @@
-**canvs.io**
+# canvs.io
 
 virtualenv venv
 . venv/bin/activate
