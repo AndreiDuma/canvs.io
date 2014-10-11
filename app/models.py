@@ -1,18 +1,43 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Binary
 from utils.database import Base
 
 
-class User(Base):
+class Text(Base):
     """
-    Just for testing purposes so far.
+    Class for handling texts in our website.
     """
 
-    __tablename__= 'users'
-    id = Column(Integer, primary_key=True)
-    username = Column(String(128), unique=True)
+    __tablename__ = 'text'
+    id = Column('id', Integer, primary_key=True)
+    x = Column('x', Integer)
+    y = Column('y', Integer)
+    width = Column('width', Integer)
+    text = Column('text', String)
 
-    def __init__(self, username):
-        self.username = username
+    def __init__(self, x, y, width, text):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.text = text
 
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<Text: Position: (%d, %d), Width: %d, Text: %r>' % (self.x, self.y, self.width, self.text)
+
+class Image(Base):
+    """
+    Class for handling images in our website.
+    """
+
+    __tablename__ = 'images'
+    id = Column('id', Integer, primary_key=True)
+    x = Column('x', Integer)
+    y = Column('y', Integer)
+    data = Column('data', Binary)
+
+    def __init__(self, x, y, data):
+        self.x = x
+        self.y = y
+        self.data = data
+
+    def __repr__(self):
+        return '<Image: Position: (%d %d)>' % (self.x, self.y)
