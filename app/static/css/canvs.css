@@ -77,10 +77,9 @@ figure {
 .item {
 	position: absolute;
   display: inline-block;
-	z-index: 100;
   background: url(../images/math-grid.jpg);
   background-size: 250px auto;
-  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
   padding: 1rem;
 }
 
@@ -89,6 +88,34 @@ figure {
 }
 
 .item.image {
-  border: 10px solid #efefef;
-  border-bottom: 20px solid #efefef;
+  /*border: 10px solid #efefef;*/
+  /*border-bottom: 20px solid #efefef;*/
+}
+
+.item:after {
+	content: "";
+	position: absolute;
+	top: 40px;
+	right: -40px;
+	z-index: 999;
+	width: 40px;
+	height: 40px;
+	background: red;
+	visibility: hidden;
+}
+
+.item:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: -40px;
+	z-index: 999;
+	width: 40px;
+	height: 40px;
+	background: yellow;
+	visibility: hidden;
+}
+
+.item:hover:after, .item:hover:before {
+	visibility: visible;
 }
