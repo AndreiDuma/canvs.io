@@ -1,4 +1,4 @@
-from flask import render_template, send_file, request
+from flask import render_template, send_file, request, Response
 from app import app
 from app.models import Text, Image
 
@@ -37,7 +37,7 @@ def items():
         'data' : base64.b64encode(item.data)
     } for item in Image.query.all()]
 
-    return json.dumps(content)
+    return Response(json.dumps(content), 200)
 
 
 @app.route('/api/items/add-text', methods=['POST'])
@@ -51,11 +51,10 @@ def add_text():
         new_text = Text(x, y, width, text)
         db_session.add(new_text)
         db_session.commit()
-
-        return "Done."
+        return Response("POST finished successfully", status=200)
 
     except Exception as e:
-        return "Failure: " + e.message
+        return Response("Failure: " + e.message, status=400)
 
 
 @app.route('/api/items/add-image', methods=['POST'])
@@ -69,7 +68,72 @@ def add_image():
         db_session.add(new_image)
         db_session.commit()
 
-        return "Done."
+        return Response(status=200)
 
-    except:
-        return "Failure."
+    except Exception as e:
+        print "Failure: " + e.message
+        return Response(status=400)
+
+
+@app.route('/api/items/update-text', methods=['PUT'])
+def update_text():
+    try:
+        id = request.form.get("id")
+        if id is None:
+            return Response("The id is mandatory for a PUT", status=400)
+
+        if Text.query.get(id) is None:
+            return Response("Failure: the given id does not exist", status=400)
+
+        x = request.form.get("x")
+        if x != None and Text.query.get(id).x != x:
+            Text.query.get(id).x = x
+
+        y = request.form.get("y")
+        if y != None and Text.query.get(id).y != y:
+            Text.query.get(id).y = y
+
+        width = request.form.get("width")
+        if width != None and Text.query.get(id).width != width:
+            Text.query.get(id).width = width
+
+        text = request.form.get("text")
+        if text != None and Text.query.get(id).text != text:
+            Text.query.get(id).text = text
+
+        db_session.commit()
+        return Response("PUT finished successfully", status=200)
+
+    except Exception as e:
+        db_session.commit()
+        return Response("Failure: " + e.message, status=400)
+
+
+@app.route('/api/items/update-image', methods=['PUT'])
+def update_image():
+    try:
+        id = request.form.get("id")
+        if id is None:
+            return Response("Failure: id is mandatory", status=400)
+
+        if Text.query.get(id) is None:
+            return Response("Failure: the given id does not exist", status=400)
+
+        x = request.form.get("x")
+        if x != None and Text.query.get(id).x != x:
+            Text.query.get(id).x = x
+
+        y = request.form.get("y")
+        if y != None and Text.query.get(id).y != y:
+            Text.query.get(id).y = y
+
+        data = request.form.get("data")
+        if data != None and Text.query.get(id).data != data:
+            Text.query.get(id).data = data
+
+        db_session.commit()
+        return Response(status=200)
+
+    except Exception as e:
+        db_session.commit()
+        return Response("Failure: " + e.message, status=400)
