@@ -59,6 +59,9 @@ figure {
 
 /*======== General styles =========*/
 
+::-webkit-scrollbar {
+  display: none;
+}
 
 #content {
 	width: 100%;
@@ -81,22 +84,26 @@ figure {
   padding: 1rem;
 }
 
-.item.text {
-	color: #000;
+.item-text .text {
+  overflow: hidden;
 }
 
-.item.text textarea {
+.item-text textarea {
   border: 0;
   width: 100%;
   height: 100%;
+  display: none;
+}
+
+.item-text .ok-button {
+  display: none;
 }
 
 .item.image {
   background: #fff;
 }
 
-.item:before {
-	content: "";
+.edit-button {
 	position: absolute;
 	top: 0;
 	right: -30px;
@@ -109,8 +116,7 @@ figure {
 	visibility: hidden;
 }
 
-.item:after {
-	content: "";
+.delete-button {
 	position: absolute;
 	top: 25px;
 	right: -30px;
@@ -123,7 +129,7 @@ figure {
 	visibility: hidden;
 }
 
-.item:hover:after, .item:hover:before {
+.item:hover .ok-button, .item:hover .edit-button, .item:hover .delete-button {
 	visibility: visible;
 }
 
