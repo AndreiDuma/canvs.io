@@ -1,7 +1,97 @@
-html, body {
-  margin: 0;
+/*======== Reset styles =========*/
+html {
+	width: 100%;
+	height: 100%;
 }
 
-canvas {
-  display: block;
+body {
+	margin: 0; padding: 0;
+	background: #fff; 
+	font-size: smaller;
+	width: 100%;
+	height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a img {
+	border: none;
+}
+
+p {
+	margin: 0 0 0 0;
+}
+
+figure {
+	margin: 0 0 0 0;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0;
+	-webkit-margin-end: 0;
+}
+
+.align-center {
+	display:-moz-box;
+	-moz-box-pack:center;
+	-moz-box-align:center;
+	-webkit-box-pack:center;
+	-webkit-box-align:center;
+	text-align: center;
+}
+
+.inline-block {
+	display:-moz-inline-stack;
+	display:inline-block;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.box-resize {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/*======== General styles =========*/
+#content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	border: 3px solid black;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#infinite {
+	position: absolute;
+	width: 10000px;
+	height: 10000px;
+	top: -50%;
+	left: -50%;
+	background: yellow;
+}
+
+.item {
+	position: absolute;
+	width: 400px;
+	height: 300px;
+	z-index: 100;
+}
+
+.item.text {
+	background: #c2c2c2;
+	color: #000;
+}
+
+.item.image {
+	background: blue;
+	left: 400px;
 }
