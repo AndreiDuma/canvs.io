@@ -59,6 +59,9 @@ figure {
 
 /*======== General styles =========*/
 
+::-webkit-scrollbar {
+  display: none;
+}
 
 #content {
 	width: 100%;
@@ -79,6 +82,10 @@ figure {
   background-size: 250px auto;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
   padding: 1rem;
+}
+
+.item.text .inner {
+  overflow: hidden;
 }
 
 .item.text {

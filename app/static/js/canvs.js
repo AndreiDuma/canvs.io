@@ -1,54 +1,5 @@
 $(document).ready(function() {
 
-  /*
-  var canvas = $("canvas");
-
-  var loadItems = function() {
-    $.get("/api/items", function(data) {
-      var items = data.items;
-
-      var textItems = items.text;
-      for (var i = 0, length = textItems.length; i < length; i++) {
-        var item = textItems[i];
-        canvas.drawText({
-          fillStyle: "#000",
-          fontSize: 25,
-          align: "left",
-          respectAlign: true,
-          draggable: true, 
-          x: item.x, y: item.y,
-          maxWidth: item.width,
-          text: item.text,
-        });
-      }
-
-      var imageItems = items.image;
-      for (var i = 0, length = imageItems.length; i < length; i++) {
-        var item = imageItems[i];
-        canvas.drawImage({
-          draggable: true, 
-          x: item.x, y: item.y,
-          source: item.data,
-        });
-      }
-    });
-  };
-
-  var resizeCanvas = function() {
-    canvas.get(0).width = $(window).width();
-    canvas.get(0).height = $(window).height();
-    canvas.drawLayers();
-  };
-
-  var initialize = function() {
-    $(window).resize(resizeCanvas);
-    resizeCanvas();
-    loadItems();
-  };
-
-  initialize();
-  */
-
   $("#items").draggable();
 
   setTimeout(function() {
@@ -65,7 +16,7 @@ $(document).ready(function() {
       var item = textItems[i];
 
       var elem = $('<div class="item text"></div>');
-      elem.text(item.text);
+      elem.html('<div class="inner">' + item.text + '</div>');
       elem.css({
         left: item.x + "px",
         top: item.y + "px",
@@ -74,7 +25,7 @@ $(document).ready(function() {
       });
       elem.appendTo(itemsElem);
       elem.draggable({scroll: true});
-      elem.resizable();
+      elem.resizable({minWidth: 100, minHeight: 100});
       elem.dblclick(function(e) {
         var el = $(e.target),
             text = el.text();
@@ -98,7 +49,7 @@ $(document).ready(function() {
       });
       elem.appendTo(itemsElem);
       elem.draggable({scroll: true});
-      elem.resizable({aspectRatio: true});
+      elem.resizable({aspectRatio: true, minWidth: 100, minHeight: 100});
     }
   });
 
