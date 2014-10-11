@@ -69,10 +69,18 @@ $(document).ready(function() {
       elem.css({
         left: item.x + "px",
         top: item.y + "px",
-        width: item.width + "px"
+        width: item.width + "px",
+        height: item.height + "px"
       });
       elem.appendTo(itemsElem);
       elem.draggable({scroll: true});
+      elem.resizable();
+      elem.dblclick(function(e) {
+        var el = $(e.target),
+            text = el.text();
+        el.html('<textarea></textarea>');
+        el.find('textarea').text(text);
+      });
     }
 
     var imageItems = items.image;
@@ -90,6 +98,7 @@ $(document).ready(function() {
       });
       elem.appendTo(itemsElem);
       elem.draggable({scroll: true});
+      elem.resizable({aspectRatio: true});
     }
   });
 
