@@ -8,11 +8,11 @@ class Text(Base):
     """
 
     __tablename__ = 'text'
-    id = Column('id', Integer, primary_key=True)
-    x = Column('x', Integer)
-    y = Column('y', Integer)
-    width = Column('width', Integer)
-    text = Column('text', String)
+    id = Column(Integer, primary_key=True)
+    x = Column(Integer)
+    y = Column(Integer)
+    width = Column(Integer)
+    text = Column(String)
 
     def __init__(self, x, y, width, text):
         self.x = x
@@ -29,10 +29,10 @@ class Image(Base):
     """
 
     __tablename__ = 'images'
-    id = Column('id', Integer, primary_key=True)
-    x = Column('x', Integer)
-    y = Column('y', Integer)
-    data = Column('data', Binary)
+    id = Column(Integer, primary_key=True)
+    x = Column(Integer)
+    y = Column(Integer)
+    data = Column(Binary)
 
     def __init__(self, x, y, data):
         self.x = x

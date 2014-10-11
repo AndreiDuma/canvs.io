@@ -14,9 +14,6 @@ Base = declarative_base()
 Base.query = db_session.query_property()
 
 def init_db():
-    from app.models import Text
+    import app.models
     Base.metadata.create_all(bind=engine)
 
-@app.teardown_appcontext
-def teardown_db(exception=None):
-    db_session.remove()

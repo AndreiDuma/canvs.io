@@ -1,16 +1,38 @@
-from flask import render_template, send_file, request
+from flask import render_template, send_file, request, json
 from app import app
-from utils.database import db_session
 from app.models import Text, Image
+
+from utils.database import db_session
+import base64
+
 
 
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
+
 @app.route('/api/items', methods=['GET'])
 def items():
-    return send_file('sample.json')
+    content = {"items" : {}}
+
+    content['items']['text'] = [{
+        'id' : item.id,
+        'x' : item.x,
+        'y' : item.y,
+        'width' : item.width,
+        'text' : item.text
+        } for item in Text.query.all()]
+
+    content['items']['images'] = [{
+        'id' : item.id,
+        'x' : item.x,
+        'y' : item.y,
+        'data' : base64.b64encode(item.data)
+        } for item in Image.query.all()]
+
+    return json.dump(content)
+
 
 @app.route('/api/items/add-text', methods=['POST'])
 def add_text():
@@ -28,6 +50,7 @@ def add_text():
 
     except:
         return "Failure."
+
 
 @app.route('/api/items/add-image', methods=['POST'])
 def add_image():
