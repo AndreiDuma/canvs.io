@@ -83,7 +83,6 @@ figure {
 
 .item.text {
 	color: #000;
-  overflow: hidden;
 }
 
 .item.text textarea {
@@ -101,7 +100,6 @@ figure {
 	position: absolute;
 	top: 0;
 	right: -30px;
-	z-index: 999;
 	width: 30px;
 	height: 30px;
 	background: url(../images/edit_icon.svg);
@@ -116,7 +114,6 @@ figure {
 	position: absolute;
 	top: 25px;
 	right: -30px;
-	z-index: 999;
 	width: 30px;
 	height: 30px;
 	background: url(../images/exit_icon.svg);
