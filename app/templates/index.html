@@ -3,12 +3,17 @@
 <head>
   <title>canvs.io</title>
   <script src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/jcanvas.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/canvs.js') }}"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/canvs.css') }}"/>
 </head>
 
 <body>
-	<canvas></canvas>
+  <div id="content">
+    <div id="items">
+      <div class="item text">1</div>
+      <div class="item image">2</div>
+    </div>
+    <div id="infinite"></div>
+  </div>
 </body>
 </html>
