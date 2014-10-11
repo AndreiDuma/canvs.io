@@ -58,9 +58,11 @@ figure {
 
 /*======== General styles =========*/
 
+/*
 ::-webkit-scrollbar {
     display: none;
 }
+*/
 
 #content {
 	width: 100%;
@@ -72,12 +74,12 @@ figure {
 	width: 100000px;
 	height: 100000px;
 	background: url(../images/seamlesspaper3.jpg);
+  position: relative;
 }
 
 .item {
 	position: absolute;
-	width: 300px;
-	height: 300px;
+  display: inline-block;
 	z-index: 100;
   background: url(../images/math-grid.jpg);
   background-size: 100% auto;
@@ -89,15 +91,10 @@ figure {
 	color: #000;
   left: 50000px;
   top: 50000px;
-  width: 500px;
   height: auto;
 }
 
 .item.image {
-  left: 50500px;
-  top: 50000px;
-  background: #fff url("../images/cat.jpg");
-  background-repeat: no-repeat;
   border: 10px solid #efefef;
   border-bottom: 20px solid #efefef;
 }
