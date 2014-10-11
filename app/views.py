@@ -163,3 +163,9 @@ def delete_image():
     db_session.delete(Text.query.get(id))
     db_session.commit()
     return Response("DELETE finished successfully", status=200)
+
+
+# @app.route('/api/items/go-to', methods=['POST'])
+# def go_to():
+#     x_coord = request.form.get("x")
+#     y_coord = request.form.get("y")
