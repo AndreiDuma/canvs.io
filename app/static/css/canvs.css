@@ -4,10 +4,11 @@ html, body {
 	height: 100%;
 }
 
-body {
+body, textarea {
 	margin: 0; padding: 0;
 	background: #fff; 
-	font-size: smaller;
+	font-size: 13px;
+  font-family: 'PT Serif', serif;
 }
 
 a {
@@ -58,9 +59,6 @@ figure {
 
 /*======== General styles =========*/
 
-::-webkit-scrollbar {
-    display: none;
-}
 
 #content {
 	width: 100%;
@@ -85,6 +83,13 @@ figure {
 
 .item.text {
 	color: #000;
+  overflow: hidden;
+}
+
+.item.text textarea {
+  border: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .item.image {
@@ -124,4 +129,9 @@ figure {
 
 .item:hover:after, .item:hover:before {
 	visibility: visible;
+}
+
+.item.image img {
+  width: 100%;
+  height: 100%;
 }

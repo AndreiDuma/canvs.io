@@ -5,12 +5,14 @@
       "x": 50000,
       "y": 50000,
       "width": 600,
+      "height": 300,
       "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet dui dignissim, tristique ipsum sit amet, imperdiet felis. Aliquam id posuere nunc. Nulla euismod at ante quis tincidunt. Mauris condimentum leo et tincidunt tincidunt. Sed ipsum orci, efficitur lobortis sollicitudin id, pellentesque in dui. Proin consectetur sodales imperdiet. Etiam quis orci nulla. Donec vel ligula magna. Nam euismod massa nisl. Curabitur eleifend non ante quis rutrum. Donec vulputate augue ut turpis porta, id sodales libero sagittis.\n\nMauris ullamcorper, lectus vel hendrerit iaculis, magna leo auctor urna, vitae scelerisque diam libero sed metus. Nunc porttitor posuere tristique. In lobortis sit amet orci sed dictum. Donec velit justo, bibendum tempor mauris eget, semper blandit leo. Nunc porttitor, lorem maximus porttitor placerat, augue mauris tempus leo, sed tristique nisi mi at leo. Maecenas ultrices sodales erat non viverra. Donec lobortis ornare nulla vitae mattis. Praesent volutpat eget lorem vitae consequat."
     }, {
       "id": 151018,
       "x": 50700,
       "y": 50000,
       "width": 300,
+      "height": 100,
       "text": "Alt text magnific."
     }],
     "image": [{
