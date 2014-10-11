@@ -88,8 +88,7 @@ figure {
 }
 
 .item.image {
-  /*border: 10px solid #efefef;*/
-  /*border-bottom: 20px solid #efefef;*/
+  background: #fff;
 }
 
 .item:before {
