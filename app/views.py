@@ -105,7 +105,6 @@ def update_text():
         return Response("PUT finished successfully", status=200)
 
     except Exception as e:
-        db_session.commit()
         return Response("Failure: " + e.message, status=400)
 
 
@@ -135,5 +134,32 @@ def update_image():
         return Response(status=200)
 
     except Exception as e:
-        db_session.commit()
         return Response("Failure: " + e.message, status=400)
+
+
+@app.route('/api/items/delete-text', methods=['DELETE'])
+def delete_text():
+    id = request.form.get("id")
+    if id is None:
+        return Response("Failure: id is mandatory", status=400)
+
+    if Text.query.get(id) is None:
+        return Response("Failure: the given id does not exist", status=400)
+
+    db_session.delete(Text.query.get(id))
+    db_session.commit()
+    return Response("DELETE finished successfully", status=200)
+
+
+@app.route('/api/items/delete-image', methods=['DELETE'])
+def delete_image():
+    id = request.form.get("id")
+    if id is None:
+        return Response("Failure: id is mandatory", status=400)
+
+    if Text.query.get(id) is None:
+        return Response("Failure: the given id does not exist", status=400)
+
+    db_session.delete(Text.query.get(id))
+    db_session.commit()
+    return Response("DELETE finished successfully", status=200)
