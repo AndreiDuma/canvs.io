@@ -43,14 +43,12 @@ def items():
 @app.route('/api/items/add-text', methods=['POST'])
 def add_text():
     try:
-        x = request.args.get("x")
-        print x
-        y = request.args.get("y")
-        width = request.args.get("width")
-        text = request.args.get("text")
+        x = request.form.get("x")
+        y = request.form.get("y")
+        width = request.form.get("width")
+        text = request.form.get("text")
 
         new_text = Text(x, y, width, text)
-        print new_text
         db_session.add(new_text)
         db_session.commit()
 
@@ -63,9 +61,9 @@ def add_text():
 @app.route('/api/items/add-image', methods=['POST'])
 def add_image():
     try:
-        x = request.args.get("x")
-        y = request.args.get("y")
-        data = request.args.get("data")
+        x = request.form.get("x")
+        y = request.form.get("y")
+        data = request.form.get("data")
 
         new_image = Image(x, y, data)
         db_session.add(new_image)

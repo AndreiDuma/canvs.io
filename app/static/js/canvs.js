@@ -51,8 +51,10 @@ $(document).ready(function() {
 
   $("#items").draggable();
 
-  $("body").scrollTop(50000);
-  $("body").scrollLeft(50000);
+  setTimeout(function() {
+    $("body").scrollTop(50000);
+    $("body").scrollLeft(50000);
+  }, 0);
 
   $.get("/api/items-mock", function(data) {
     var items = data.items,
