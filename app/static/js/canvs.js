@@ -65,12 +65,12 @@ $(document).ready(function() {
       var elem = $('<div class="item text"></div>');
       elem.text(item.text);
       elem.css({
-        left: item.x,
-        top: item.y,
-        width: item.width
+        left: item.x + "px",
+        top: item.y + "px",
+        width: item.width + "px"
       });
-      elem.draggable({scroll: true});
       elem.appendTo(itemsElem);
+      elem.draggable({scroll: true});
     }
 
     var imageItems = items.image;
@@ -81,13 +81,13 @@ $(document).ready(function() {
           imgElem = $('<img></img>');
       imgElem.attr("src", item.data).appendTo(elem);
       elem.css({
-        left: item.x,
-        top: item.y,
-        width: item.width,
-        height: item.height
+        left: item.x + "px",
+        top: item.y + "px",
+        width: item.width + "px",
+        height: item.height + "px"
       });
-      elem.draggable({scroll: true});
       elem.appendTo(itemsElem);
+      elem.draggable({scroll: true});
     }
   });
 
