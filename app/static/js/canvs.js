@@ -1,21 +1,41 @@
 $(document).ready(function() {
 
-  var canvas = $('canvas');
+  var canvas = $("canvas");
+
+  var items = {
+    text: [],
+    image: [],
+    link: []
+  };
 
   var redraw = function() {
-    canvas.drawRect({
-      fillStyle: '#000',
-      x: 0, y: 0,
-      width: 100, height: 100
-    });
+    var textItems = items.text;
+    for (var i = 0, length = textItems.length; i < length; i++) {
+      var item = textItems[i];
+      canvas.drawText({
+        fillStyle: "#000",
+        fontSize: 25,
+        align: "both",
+        x: item.x, y: item.y,
+        maxWidth: item.width,
+        text: item.text
+      });
+    }
 
-  canvas.drawText({
-    fillStyle: 'red',
-    x: 100, y: 100,
-    fontSize: '50px',
-    text: 'Hello'
-  });
+    var imageItems = items.image;
+    for (var i = 0, length = imageItems.length; i < length; i++) {
+      var item = imageItems[i];
+      canvas.drawImage({
+        x: item.x, y: item.y,
+        source: item.data
+      });
+    }
   };
+
+  $.get("/api/items", function(data) {
+    items = data.items;
+    redraw();
+  });
 
   var resizeCanvas = function() {
     canvas.get(0).width = $(window).width();
