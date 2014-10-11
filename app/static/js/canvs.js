@@ -19,7 +19,7 @@ $(document).ready(function() {
       height: textItem.height + "px"
     });
     elem.appendTo(itemsElem);
-    elem.draggable({scroll: true});
+    elem.draggable({scroll: true, stack: ".item"});
     elem.resizable({minWidth: 100, minHeight: 100});
 
     editButton.click(function() {
@@ -55,7 +55,7 @@ $(document).ready(function() {
       width: imageItem.size + "px"
     });
     elem.appendTo(itemsElem);
-    elem.draggable({scroll: true});
+    elem.draggable({scroll: true, stack: ".item"});
     elem.resizable({aspectRatio: true, minWidth: 50, minHeight: 50});
 
     deleteButton.click(function() {
@@ -70,6 +70,7 @@ $(document).ready(function() {
     $("body").scrollLeft(49900);
   }, 0);
 
+  /* Load the items and render all items of each type */
   $.get("/api/items-mock", function(data) {
     var items = data.items;
 
@@ -85,5 +86,15 @@ $(document).ready(function() {
       createImageElem(item);
     }
   });
+
+  context.init({
+    fadeSpeed: 0,
+    compress: true
+  });
+  context.attach("#items", [{
+    text: 'Google',
+    href: 'http://google.com',
+    target: '_blank'
+  }]);
 
 });
