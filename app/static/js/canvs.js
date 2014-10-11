@@ -18,7 +18,8 @@ $(document).ready(function() {
         align: "both",
         x: item.x, y: item.y,
         maxWidth: item.width,
-        text: item.text
+        text: item.text,
+        draggable: true, 
       });
     }
 
@@ -27,7 +28,8 @@ $(document).ready(function() {
       var item = imageItems[i];
       canvas.drawImage({
         x: item.x, y: item.y,
-        source: item.data
+        source: item.data,
+        draggable: true, 
       });
     }
   };
