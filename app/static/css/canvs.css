@@ -92,27 +92,33 @@ figure {
   /*border-bottom: 20px solid #efefef;*/
 }
 
-.item:after {
-	content: "";
-	position: absolute;
-	top: 40px;
-	right: -40px;
-	z-index: 999;
-	width: 40px;
-	height: 40px;
-	background: red;
-	visibility: hidden;
-}
-
 .item:before {
 	content: "";
 	position: absolute;
 	top: 0;
-	right: -40px;
+	right: -30px;
 	z-index: 999;
-	width: 40px;
-	height: 40px;
-	background: yellow;
+	width: 30px;
+	height: 30px;
+	background: url(../images/edit_icon.svg);
+	background-size: 80% auto;
+	background-position: top center;
+	background-repeat: no-repeat;
+	visibility: hidden;
+}
+
+.item:after {
+	content: "";
+	position: absolute;
+	top: 25px;
+	right: -30px;
+	z-index: 999;
+	width: 30px;
+	height: 30px;
+	background: url(../images/exit_icon.svg);
+	background-size: 80% auto;
+	background-position: top center;
+	background-repeat: no-repeat;
 	visibility: hidden;
 }
 
