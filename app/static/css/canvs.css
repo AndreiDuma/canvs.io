@@ -71,26 +71,33 @@ figure {
 	display: block;
 	width: 100000px;
 	height: 100000px;
+	background: url(../images/seamlesspaper3.jpg);
 }
 
 .item {
 	position: absolute;
-	width: 400px;
+	width: 300px;
 	height: 300px;
 	z-index: 100;
-  border-radius: 5px;
-  border: 3px dashed #effa00;
+  background: url(../images/math-grid.jpg);
+  background-size: 100% auto;
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
 }
 
 .item.text {
 	color: #000;
   left: 50000px;
   top: 50000px;
+  width: 500px;
+  height: auto;
 }
 
 .item.image {
   left: 50500px;
   top: 50000px;
-  background: url("../images/cat.jpg");
+  background: #fff url("../images/cat.jpg");
   background-repeat: no-repeat;
+  border: 10px solid #efefef;
+  border-bottom: 20px solid #efefef;
 }
