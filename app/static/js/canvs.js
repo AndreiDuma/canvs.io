@@ -49,6 +49,10 @@ $(document).ready(function() {
   initialize();
   */
 
-  $('.item').draggable({scroll: true});
+  $(".item").draggable({scroll: true});
+  $("#items").draggable();
+
+  $("#content").scrollTop(50000);
+  $("#content").scrollLeft(50000);
 
 });
