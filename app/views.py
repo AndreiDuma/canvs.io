@@ -137,8 +137,11 @@ def update_image():
         return Response("Failure: " + e.message, status=400)
 
 
-@app.route('/api/items/delete-text', methods=['DELETE'])
-def delete_text():
+@app.route('/api/items/delete-<model>', methods=['DELETE'])
+def delete_instance(model):
+    if model != 'text' or model != 'image':
+        return Response("Failure: invalid URL for deleting", status=400)
+
     id = request.form.get("id")
     if id is None:
         return Response("Failure: id is mandatory", status=400)
@@ -146,21 +149,7 @@ def delete_text():
     if Text.query.get(id) is None:
         return Response("Failure: the given id does not exist", status=400)
 
-    db_session.delete(Text.query.get(id))
-    db_session.commit()
-    return Response("DELETE finished successfully", status=200)
-
-
-@app.route('/api/items/delete-image', methods=['DELETE'])
-def delete_image():
-    id = request.form.get("id")
-    if id is None:
-        return Response("Failure: id is mandatory", status=400)
-
-    if Text.query.get(id) is None:
-        return Response("Failure: the given id does not exist", status=400)
-
-    db_session.delete(Text.query.get(id))
+    db_session.delete(Text.query.get(id) if model == 'text' else Image.query.get(id))
     db_session.commit()
     return Response("DELETE finished successfully", status=200)
 
