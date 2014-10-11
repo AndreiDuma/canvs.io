@@ -15,11 +15,12 @@ $(document).ready(function() {
       canvas.drawText({
         fillStyle: "#000",
         fontSize: 25,
-        align: "both",
+        align: "left",
+        respectAlign: true,
+        draggable: true, 
         x: item.x, y: item.y,
         maxWidth: item.width,
         text: item.text,
-        draggable: true, 
       });
     }
 
@@ -27,9 +28,9 @@ $(document).ready(function() {
     for (var i = 0, length = imageItems.length; i < length; i++) {
       var item = imageItems[i];
       canvas.drawImage({
+        draggable: true, 
         x: item.x, y: item.y,
         source: item.data,
-        draggable: true, 
       });
     }
   };
