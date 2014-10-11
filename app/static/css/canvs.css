@@ -82,6 +82,7 @@ figure {
   background-size: 250px auto;
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.3);
   padding: 1rem;
+  z-index: 100;
 }
 
 .item-text .text {
@@ -100,13 +101,29 @@ figure {
 }
 
 .item.image {
-  background: #fff;
+  /*border: 10px solid #efefef;*/
+  /*border-bottom: 20px solid #efefef;*/
+}
+
+.ok-button {
+	position: absolute;
+	top: 25px;
+	right: -30px;
+	z-index: 999;
+	width: 30px;
+	height: 30px;
+	background: url(../images/done_icon.svg);
+	background-size: 80% auto;
+	background-position: top center;
+	background-repeat: no-repeat;
+	visibility: hidden;
 }
 
 .edit-button {
 	position: absolute;
-	top: 0;
+	top: 25px;
 	right: -30px;
+	z-index: 999;
 	width: 30px;
 	height: 30px;
 	background: url(../images/edit_icon.svg);
@@ -118,8 +135,9 @@ figure {
 
 .delete-button {
 	position: absolute;
-	top: 25px;
+	top: 0;
 	right: -30px;
+	z-index: 999;
 	width: 30px;
 	height: 30px;
 	background: url(../images/exit_icon.svg);
