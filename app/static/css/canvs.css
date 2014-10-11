@@ -11,6 +11,11 @@ body, textarea {
   font-family: 'PT Serif', serif;
 }
 
+textarea {
+	width: auto;
+	height: auto;
+}
+
 a {
 	text-decoration: none;
 }
