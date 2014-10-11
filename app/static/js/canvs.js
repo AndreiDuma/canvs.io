@@ -1,22 +1,12 @@
 $(document).ready(function() {
 
+  /*
   var canvas = $("canvas");
-
-  canvas.translateCanvas({
-    layer: true,
-    name: 'translate'
-  });
-  canvas.setLayer('translate', {
-    draggable: true,
-    x: '+=1000'
-  });
-  canvas.drawLayers();
 
   var loadItems = function() {
     $.get("/api/items", function(data) {
       var items = data.items;
 
-      /* Render text items */
       var textItems = items.text;
       for (var i = 0, length = textItems.length; i < length; i++) {
         var item = textItems[i];
@@ -32,7 +22,6 @@ $(document).ready(function() {
         });
       }
 
-      /* Render images */
       var imageItems = items.image;
       for (var i = 0, length = imageItems.length; i < length; i++) {
         var item = imageItems[i];
@@ -58,5 +47,8 @@ $(document).ready(function() {
   };
 
   initialize();
+  */
+
+  $('.item').draggable({scroll: true});
 
 });
