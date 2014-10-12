@@ -15,9 +15,10 @@ def add_text():
         x = request.form.get("x")
         y = request.form.get("y")
         width = request.form.get("width")
+        height = request.form.get("height")
         text = request.form.get("text")
 
-        new_text = Text(x, y, width, text)
+        new_text = Text(x, y, width, height,text)
         db_session.add(new_text)
         db_session.commit()
         return Response("POST finished successfully", status=200)
@@ -45,6 +46,10 @@ def update_text(id):
     if width != None and Text.query.get(id).width != width:
         Text.query.get(id).width = width
 
+    height = request.form.get("height")
+    if height != None and Text.query.get(id).height != height:
+        Text.query.get(id).height = height
+
     text = request.form.get("text")
     if text != None and Text.query.get(id).text != text:
         Text.query.get(id).text = text
@@ -59,9 +64,10 @@ def add_image():
     try:
         x = request.form.get("x")
         y = request.form.get("y")
+        size = request.form.get("size")
         url = request.form.get("url")
 
-        new_image = Image(x, y, url)
+        new_image = Image(x, y, size, url)
         db_session.add(new_image)
         db_session.commit()
 
@@ -86,6 +92,10 @@ def update_image(id):
     y = request.form.get("y")
     if y != None and Text.query.get(id).y != y:
         Text.query.get(id).y = y
+
+    size = request.form.get("size")
+    if size != None and Text.query.get(id).size != size:
+        Text.query.get(id).size = size
 
     url = request.form.get("url")
     if url != None and Text.query.get(id).url != url:
@@ -115,6 +125,7 @@ def items():
         'x' : item.x,
         'y' : item.y,
         'width' : item.width,
+        'height' : item.height,
         'text' : item.text
     } for item in Text.query.all()]
 
@@ -122,25 +133,26 @@ def items():
         'id' : item.id,
         'x' : item.x,
         'y' : item.y,
+        'size' : item.size,
         'url' : item.url
     } for item in Image.query.all()]
 
     return Response(json.dumps(content), 200)
 
 
-@app.route('/api/items/save-text', methods=['POST', 'PUT'])
+@app.route('/api/save/text', methods=['POST', 'PUT'])
 def save_text():
     id = request.form.get("id")
     return add_text() if id is None else update_text(id);
 
 
-@app.route('/api/items/save-image', methods=['POST', 'PUT'])
+@app.route('/api/save/image', methods=['POST', 'PUT'])
 def save_image():
     id = request.form.get("id")
     return add_image() if id is None else update_image(id);
 
 
-@app.route('/api/items/delete-<model>', methods=['DELETE'])
+@app.route('/api/delete/<model>', methods=['DELETE'])
 def delete_instance(model):
     if model != 'text' and model != 'image':
         return Response("Failure: invalid URL for deleting", status=400)
