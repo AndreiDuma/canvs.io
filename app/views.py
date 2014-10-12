@@ -140,16 +140,14 @@ def items():
     return Response(json.dumps(content), 200)
 
 
-@app.route('/api/save/text', methods=['POST', 'PUT'])
-def save_text():
-    id = request.form.get("id")
-    return add_text() if id is None else update_text(id);
+@app.route('/api/save/<model>', methods=['POST', 'PUT'])
+def save_instance(model):
+    if model != 'text' and model != 'image':
+        return Response("Failure: invalid URL for deleting", status=400)
 
-
-@app.route('/api/save/image', methods=['POST', 'PUT'])
-def save_image():
     id = request.form.get("id")
-    return add_image() if id is None else update_image(id);
+    return (add_text() if id is None else update_text(id)) if model == 'text'\
+           else (add_text() if id is None else update_text(id))
 
 
 @app.route('/api/delete/<model>', methods=['DELETE'])
