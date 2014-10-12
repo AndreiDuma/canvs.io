@@ -96,9 +96,10 @@ $(document).ready(function() {
   }, 0);
 
   /* Load the items and render all items of each type */
-  $.get("/api/items-mock", function(data) {
+  $.get("/api/items", function(data) {
     var items = data.items;
 
+    console.log(data);
     var textItems = items.text;
     for (var i = 0, length = textItems.length; i < length; i++) {
       var item = textItems[i];

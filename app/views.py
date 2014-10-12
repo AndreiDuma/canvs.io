@@ -1,10 +1,8 @@
-from flask import render_template, send_file, request, Response
+from flask import render_template, send_file, request, jsonify, Response
 from app import app
 from app.models import Text, Image
 
 from utils.database import db_session
-import json
-
 
 
 """
@@ -129,7 +127,7 @@ def items():
         'text' : item.text
     } for item in Text.query.all()]
 
-    content['items']['images'] = [{
+    content['items']['image'] = [{
         'id' : item.id,
         'x' : item.x,
         'y' : item.y,
@@ -137,7 +135,7 @@ def items():
         'url' : item.url
     } for item in Image.query.all()]
 
-    return Response(json.dumps(content), 200)
+    return jsonify(content)
 
 
 @app.route('/api/save/text', methods=['POST', 'PUT'])
