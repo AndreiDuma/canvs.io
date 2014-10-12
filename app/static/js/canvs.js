@@ -19,7 +19,16 @@ $(document).ready(function() {
       height: textItem.height + "px"
     });
     elem.appendTo(itemsElem);
-    elem.draggable({scroll: true, stack: ".item"});
+    elem.draggable({
+      scroll: true,
+      stack: ".item",
+      stop: function() {
+        console.log(elem);
+        textItem.x = elem.offset().left;
+        textItem.y = elem.offset().top;
+        $.post('/api/save/text', textItem);
+      }
+    });
     elem.resizable({minWidth: 100, minHeight: 100});
 
     editButton.click(function() {
