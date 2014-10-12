@@ -58,6 +58,3 @@ target/
 
 # virtualenv
 venv/
-
-# SQLAlchemy database
-canvs.db
