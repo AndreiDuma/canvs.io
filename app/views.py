@@ -71,24 +71,24 @@ Auxiliar function used for updating an existing item from the images table,
 through its id.
 """
 def update_image(id):
-    if Text.query.get(id) is None:
+    if Image.query.get(id) is None:
         return Response("Failure: the given id does not exist", status=400)
 
     x = request.form.get("x")
-    if x != None and Text.query.get(id).x != x:
-        Text.query.get(id).x = x
+    if x != None and Image.query.get(id).x != x:
+        Image.query.get(id).x = x
 
     y = request.form.get("y")
-    if y != None and Text.query.get(id).y != y:
-        Text.query.get(id).y = y
+    if y != None and Image.query.get(id).y != y:
+        Image.query.get(id).y = y
 
     size = request.form.get("size")
-    if size != None and Text.query.get(id).size != size:
-        Text.query.get(id).size = size
+    if size != None and Image.query.get(id).size != size:
+        Image.query.get(id).size = size
 
     url = request.form.get("url")
-    if url != None and Text.query.get(id).url != url:
-        Text.query.get(id).url = url
+    if url != None and Image.query.get(id).url != url:
+        Image.query.get(id).url = url
 
     db_session.commit()
     return jsonify({'id' : id})
@@ -136,7 +136,7 @@ def save_instance(model):
 
     id = request.form.get("id")
     return (add_text() if id is None else update_text(id)) if model == 'text'\
-           else (add_text() if id is None else update_text(id))
+           else (add_image() if id is None else update_image(id))
 
 
 @app.route('/api/delete/<model>', methods=['DELETE'])
@@ -148,10 +148,16 @@ def delete_instance(model):
     if id is None:
         return Response("Failure: id is mandatory", status=400)
 
-    if Text.query.get(id) is None:
+    deleted = None
+    if model == 'text':
+        deleted = Text.query.get(id)
+    if model == 'image':
+        deleted = Image.query.get(id)
+    
+    if deleted is None:
         return Response("Failure: the given id does not exist", status=400)
 
-    db_session.delete(Text.query.get(id) if model == 'text' else Image.query.get(id))
+    db_session.delete(deleted)
     db_session.commit()
     return Response("DELETE finished successfully", status=200)
 

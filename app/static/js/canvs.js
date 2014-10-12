@@ -23,22 +23,26 @@ $(document).ready(function() {
       scroll: true,
       stack: ".item",
       stop: function() {
-        console.log(elem);
+        if (!textItem.id) return;
         textItem.x = elem.offset().left;
         textItem.y = elem.offset().top;
         $.post('/api/save/text', textItem);
       }
     });
     elem.resizable({minWidth: 100, minHeight: 100});
+    elem.resize(function(e) {
+      if (!textItem.id) return;
+      textItem.width = elem.width();
+      textItem.height = elem.height();
+      $.post('/api/save/text', textItem);
+    });
 
     editButton.click(function() {
       textElem.hide();
       inputElem.val(textItem.text).show();
       editButton.hide();
       okButton.show().click(function() {
-        // TODO request to server
         textItem.text = inputElem.val();
-
         $.post('/api/save/text', textItem, function(data) {
           textItem.id = data.id;
           inputElem.hide();
@@ -51,7 +55,10 @@ $(document).ready(function() {
     });
 
     deleteButton.click(function() {
-      // TODO request to server
+      if (!textItem.id) {
+        elem.remove();
+        return;
+      }
       $.ajax({
         url: '/api/delete/text',
         type: 'DELETE',
@@ -80,27 +87,54 @@ $(document).ready(function() {
       width: imageItem.size + "px"
     });
     elem.appendTo(itemsElem);
-    elem.draggable({scroll: true, stack: ".item"});
-    elem.resizable({aspectRatio: true, minWidth: 50, minHeight: 50});
+    elem.draggable({
+      scroll: true,
+      stack: ".item",
+      stop: function() {
+        if (!imageItem.id) return;
+        imageItem.x = elem.offset().left;
+        imageItem.y = elem.offset().top;
+        $.post('/api/save/image', imageItem);
+      }
+    });
+    elem.resizable({aspectRatio: true, minWidth: 50, minHeight: 30});
+    elem.resize(function(e) {
+      if (!imageItem.id) return;
+      imageItem.size = elem.width();
+      $.post('/api/save/image', imageItem);
+    });
 
     editButton.click(function() {
       imageElem.hide();
       urlElem.val(imageItem.url).show();
       editButton.hide();
       okButton.show().click(function() {
-        // TODO request to server
-        urlElem.hide();
         imageItem.url = urlElem.val();
-        imageElem.attr("src", imageItem.url);
-        imageElem.show();
-        okButton.hide();
-        editButton.show();
+        $.post('/api/save/image', imageItem, function(data) {
+          imageItem.id = data.id;
+          urlElem.hide();
+          imageItem.url = urlElem.val();
+          imageElem.attr("src", imageItem.url);
+          imageElem.show();
+          okButton.hide();
+          editButton.show();
+        });
       });
     });
 
     deleteButton.click(function() {
-      // TODO request to server
-      elem.remove();
+      if (!imageItem.id) {
+        elem.remove();
+        return;
+      }
+      $.ajax({
+        url: '/api/delete/image',
+        type: 'DELETE',
+        data: imageItem,
+        success: function() {
+          elem.remove();
+        }
+      });
     });
 
     return elem;
