@@ -19,7 +19,7 @@ class Text(Base):
         self.x = x
         self.y = y
         self.width = width
-        self.height = heigh
+        self.height = height
         self.text = text
 
     def __repr__(self):

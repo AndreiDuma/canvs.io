@@ -28,12 +28,15 @@ $(document).ready(function() {
       editButton.hide();
       okButton.show().click(function() {
         // TODO request to server
-        inputElem.hide();
         textItem.text = inputElem.val();
-        textElem.text(textItem.text);
-        textElem.show();
-        okButton.hide();
-        editButton.show();
+
+        $.post('/api/save/text', textItem, function() {
+          inputElem.hide();
+          textElem.text(textItem.text);
+          textElem.show();
+          okButton.hide();
+          editButton.show();
+        });
       });
     });
 
@@ -48,9 +51,12 @@ $(document).ready(function() {
   var createImageElem = function(imageItem) {
     var elem = $('<div class="item item-image"></div>'),
         imageElem = $('<img></img>'),
+        urlElem = $('<input type="text"/>'),
+        okButton = $('<div class="ok-button"></div>'),
+        editButton = $('<div class="edit-button"></div>'),
         deleteButton = $('<div class="delete-button"></div>');
-    elem.append(imageElem, deleteButton);
-    imageElem.attr('src', imageItem.data);
+    elem.append(imageElem, urlElem, okButton, editButton, deleteButton);
+    imageElem.attr('src', imageItem.url);
     elem.css({
       left: imageItem.x + "px",
       top: imageItem.y + "px",
@@ -59,6 +65,21 @@ $(document).ready(function() {
     elem.appendTo(itemsElem);
     elem.draggable({scroll: true, stack: ".item"});
     elem.resizable({aspectRatio: true, minWidth: 50, minHeight: 50});
+
+    editButton.click(function() {
+      imageElem.hide();
+      urlElem.val(imageItem.url).show();
+      editButton.hide();
+      okButton.show().click(function() {
+        // TODO request to server
+        urlElem.hide();
+        imageItem.url = urlElem.val();
+        imageElem.attr("src", imageItem.url);
+        imageElem.show();
+        okButton.hide();
+        editButton.show();
+      });
+    });
 
     deleteButton.click(function() {
       // TODO request to server
@@ -108,10 +129,27 @@ $(document).ready(function() {
       newText.find('.edit-button').click();
       newText.find('textarea').focus();
     }
-  },
-		{text: 'Upload image', href: '#'},
-		{text: 'Create link', href: '#'},
-		{divider: true},
-		{text: 'About', href: '#'},
-	]);
+  }, {
+    text: 'Insert image',
+    action: function(e) {
+      e.preventDefault();
+      var newImage = createImageElem({
+        x: e.pageX,
+        y: e.pageY,
+        url: "",
+        size: 400
+      });
+      newImage.find('.edit-button').click();
+      newImage.find('input').focus();
+    }
+  }, {
+    text: 'Create link',
+    href: '#' // TODO add links
+  }, {
+		divider: true
+  }, {
+		text: 'About',
+    href: 'https://github.com/AndreiDuma/canvs.io',
+    target: '_blank'
+  }]);
 });

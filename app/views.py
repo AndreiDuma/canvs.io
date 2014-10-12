@@ -18,7 +18,7 @@ def add_text():
         height = request.form.get("height")
         text = request.form.get("text")
 
-        new_text = Text(x, y, width, height,text)
+        new_text = Text(x, y, width, height, text)
         db_session.add(new_text)
         db_session.commit()
         return Response("POST finished successfully", status=200)
