@@ -3,7 +3,6 @@ from app import app
 from app.models import Text, Image
 
 from utils.database import db_session
-import base64
 import json
 
 
@@ -60,9 +59,9 @@ def add_image():
     try:
         x = request.form.get("x")
         y = request.form.get("y")
-        data = request.form.get("data")
+        url = request.form.get("url")
 
-        new_image = Image(x, y, data)
+        new_image = Image(x, y, url)
         db_session.add(new_image)
         db_session.commit()
 
@@ -88,9 +87,9 @@ def update_image(id):
     if y != None and Text.query.get(id).y != y:
         Text.query.get(id).y = y
 
-    data = request.form.get("data")
-    if data != None and Text.query.get(id).data != data:
-        Text.query.get(id).data = data
+    url = request.form.get("url")
+    if url != None and Text.query.get(id).url != url:
+        Text.query.get(id).url = url
 
     db_session.commit()
     return Response(status=200)
@@ -123,7 +122,7 @@ def items():
         'id' : item.id,
         'x' : item.x,
         'y' : item.y,
-        'data' : base64.b64encode(item.data)
+        'url' : item.url
     } for item in Image.query.all()]
 
     return Response(json.dumps(content), 200)

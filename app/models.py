@@ -32,12 +32,12 @@ class Image(Base):
     id = Column(Integer, primary_key=True)
     x = Column(Integer)
     y = Column(Integer)
-    data = Column(Binary)
+    url = Column(String)
 
-    def __init__(self, x, y, data):
+    def __init__(self, x, y, url):
         self.x = x
         self.y = y
-        self.data = data
+        self.url = url
 
     def __repr__(self):
         return '<Image: Position: (%d %d)>' % (self.x, self.y)
