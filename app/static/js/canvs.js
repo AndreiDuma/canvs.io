@@ -6,7 +6,7 @@ $(document).ready(function() {
   var createTextElem = function(textItem) {
     var elem = $('<div class="item item-text"></div>'),
         textElem = $('<div class="text"></div>'),
-        inputElem = $('<textarea></textarea>'),
+        inputElem = $('<textarea placeholder="Text..."></textarea>'),
         okButton = $('<div class="ok-button"></div>'),
         editButton = $('<div class="edit-button"></div>'),
         deleteButton = $('<div class="delete-button"></div>');
@@ -41,6 +41,8 @@ $(document).ready(function() {
       // TODO request to server
       elem.remove();
     });
+
+    return elem;
   };
 
   var createImageElem = function(imageItem) {
@@ -62,6 +64,8 @@ $(document).ready(function() {
       // TODO request to server
       elem.remove();
     });
+
+    return elem;
   };
 
 
@@ -89,12 +93,25 @@ $(document).ready(function() {
 
   context.init({
     fadeSpeed: 0,
-    compress: true
   });
   context.attach("#items", [{
-    text: 'Google',
-    href: 'http://google.com',
-    target: '_blank'
-  }]);
-
+    text: 'Add text',
+    action: function(e) {
+      e.preventDefault();
+      var newText = createTextElem({
+        x: e.pageX,
+        y: e.pageY,
+        text: "",
+        width: 300,
+        height: 100
+      });
+      newText.find('.edit-button').click();
+      newText.find('textarea').focus();
+    }
+  },
+		{text: 'Upload image', href: '#'},
+		{text: 'Create link', href: '#'},
+		{divider: true},
+		{text: 'About', href: '#'},
+	]);
 });

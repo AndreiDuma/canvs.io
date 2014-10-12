@@ -64,6 +64,10 @@ figure {
 
 /*======== General styles =========*/
 
+.dropdown-menu {
+  border-radius: 0;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
