@@ -1,4 +1,4 @@
-# canvs.io
+# canvs.io - [Live Demo!](http://178.62.194.181/)
 
 ![Logo](./app/static/images/logo_canvs.png)
 
