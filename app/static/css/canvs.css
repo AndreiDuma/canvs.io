@@ -7,7 +7,7 @@ html, body {
 body, textarea {
 	margin: 0; padding: 0;
 	background: #fff; 
-	font-size: 1.1em;
+	font-size: 18px;
   font-family: 'PT Serif', serif;
 }
 
@@ -105,6 +105,7 @@ figure {
   width: 100%;
   height: 100%;
   display: none;
+  resize: none;
 }
 
 .item-text .ok-button {
