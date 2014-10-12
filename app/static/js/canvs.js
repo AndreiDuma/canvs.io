@@ -30,7 +30,8 @@ $(document).ready(function() {
         // TODO request to server
         textItem.text = inputElem.val();
 
-        $.post('/api/save/text', textItem, function() {
+        $.post('/api/save/text', textItem, function(data) {
+          textItem.id = data.id;
           inputElem.hide();
           textElem.text(textItem.text);
           textElem.show();
@@ -42,7 +43,14 @@ $(document).ready(function() {
 
     deleteButton.click(function() {
       // TODO request to server
-      elem.remove();
+      $.ajax({
+        url: '/api/delete/text',
+        type: 'DELETE',
+        data: textItem,
+        success: function() {
+          elem.remove();
+        }
+      });
     });
 
     return elem;
