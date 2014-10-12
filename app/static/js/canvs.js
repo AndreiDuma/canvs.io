@@ -29,7 +29,7 @@ $(document).ready(function() {
         $.post('/api/save/text', textItem);
       }
     });
-    elem.resizable({minWidth: 100, minHeight: 100});
+    elem.resizable({minWidth: 100, minHeight: 30});
     elem.resize(function(e) {
       if (!textItem.id) return;
       textItem.width = elem.width();
